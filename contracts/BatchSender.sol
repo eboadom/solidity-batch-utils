@@ -26,13 +26,11 @@ contract BatchSender {
         for(uint256 i = 0; i < _calls.length; i++) {
             (bool _success, bytes memory _data) = _calls[i].recipient.call{gas: _calls[i].gas, value: _calls[i].value}(_calls[i].data);
             if (!_success) {
-                // Cast to bytes the previously created _reverts to split array length from data in the following assembly revert()
-                bytes memory _bytesReverts = abi.encode(RevertData({callId: i, data: _data}));
-                // Revert returning as revert message the content of the _bytesReverts, without the initial length
-                // The revert message is constructed by reading from the memory address of (_bytesReverts + 32 bytes (0x20))
-                // to that previous address + the length of the _bytesReverts array, got from mload(_bytesReverts) which returns
-                // the memory content on the first 32 bytes of _bytesReverts (the length)
-                assembly { revert(add(0x20, _bytesReverts), mload(_bytesReverts)) }
+                // Revert returning as revert message the content of the _data, without the initial length
+                // The revert message is constructed by reading from the memory address of (_data + 32 bytes (0x20))
+                // to that previous address + the length of the _data array, got from mload(_data) which returns
+                // the memory content on the first 32 bytes of _data (the length)
+                assembly { revert(add(0x20, _data), mload(_data)) }
             }
         }
     }
