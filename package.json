@@ -6,7 +6,7 @@
     "dev:environment": "npm i && tail -f /dev/null",
     "buidler": "buidler",
     "buidler help": "buidler help",
-    "compile": "buidler compile",
+    "compile": "buidler compile && npm run types-gen",
     "types-gen": "buidler typechain",
     "test": "buidler test",
     "dev:deploy": "buidler full-deployment",
@@ -32,7 +32,7 @@
     "typechain-target-ethers": "1.0.4",
     "typechain-target-truffle": "1.0.2",
     "typechain-target-web3-v1": "1.0.4",
-    "typescript": "3.4.3",
+    "typescript": "3.8.3",
     "bignumber.js": "9.0.0",
     "ethers": "4.0.46"
   },

@@ -23,7 +23,7 @@ contract BatchCaller {
     /// - The recipients of all the staticcalls need to be contracts accounts
     /// @param _calls The list of Call structs to execute
     /// @return CallResult[] The list of CallResult structs
-    function batchCalls(Call[] memory _calls) public view returns(CallResult[] memory) {
+    function batchCall(Call[] memory _calls) public view returns(CallResult[] memory) {
         for (uint256 i = 0; i < _calls.length; i++) {
             require(_calls[i].recipient.isContract() && _calls[i].recipient != address(this), "INVALID_RECIPIENT");
         }

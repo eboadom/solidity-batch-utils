@@ -28,7 +28,7 @@ describe("BatchCaller", () => {
   it("batchCall() with 1 call", async () => {
     const increment = 20;
     await (await testCounters[0].increment(increment)).wait();
-    const tx = await batchCaller.batchCalls([
+    const tx = await batchCaller.batchCall([
       {
         recipient: testCounters[0].address,
         data: countEncodedCall,
@@ -43,7 +43,7 @@ describe("BatchCaller", () => {
     const increments = [4, 6];
     await (await testCounters[0].increment(increments[0])).wait();
     await (await testCounters[1].increment(increments[1])).wait();
-    const tx = await batchCaller.batchCalls([
+    const tx = await batchCaller.batchCall([
       {
         recipient: testCounters[0].address,
         data: countEncodedCall,
@@ -61,7 +61,7 @@ describe("BatchCaller", () => {
   });
 
   it("batchCall() reverts when trying to call a non-contract account", async () => {
-    const txPromise = batchCaller.batchCalls([
+    const txPromise = batchCaller.batchCall([
       {
         recipient: wallet.address,
         data: countEncodedCall,

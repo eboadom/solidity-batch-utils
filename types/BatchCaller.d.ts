@@ -12,7 +12,7 @@ import {
 
 interface BatchCallerInterface extends Interface {
   functions: {
-    batchCalls: TypedFunctionDescription<{
+    batchCall: TypedFunctionDescription<{
       encode([_calls]: [{ recipient: string; data: Arrayish }[]]): string;
     }>;
   };
@@ -34,19 +34,19 @@ export class BatchCaller extends Contract {
   interface: BatchCallerInterface;
 
   functions: {
-    batchCalls(
+    batchCall(
       _calls: { recipient: string; data: Arrayish }[]
     ): Promise<{ success: boolean; data: string }[]>;
   };
 
-  batchCalls(
+  batchCall(
     _calls: { recipient: string; data: Arrayish }[]
   ): Promise<{ success: boolean; data: string }[]>;
 
   filters: {};
 
   estimate: {
-    batchCalls(
+    batchCall(
       _calls: { recipient: string; data: Arrayish }[]
     ): Promise<BigNumber>;
   };
