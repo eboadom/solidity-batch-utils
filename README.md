@@ -1,14 +1,15 @@
 # solidity-batch-utils
 
-Something that sooner or later a Solidity developer finds while trying to optimize smart contracts or applications consuming is the need to do aggregated "read actions" (not modifying the on-chain state) and/or aggregated "write actions" (modifying the on-chain state).
+Something that sooner or later a Solidity developer finds while trying to optimize smart contracts or applications consuming is the need to do aggregated "read actions" (not modifying the on-chain state), aggregated "write actions" (modifying the on-chain state) or aggregated contracts' deployments from another contract (factory).
 
 Aggregation of "reads" is useful in order to decrease the traffic between applications and Ethereum nodes and to insure the atomicity of these (same block). 
 
-Meanwhile, aggregation of "writes" is potentially useful for different reason on smart contract -> smart contract communication and to for example simplify test scenarios involving communication between smart contrat wallet and other contracts.
+Meanwhile, aggregation of "writes" and deployments are potentially useful for different reason on smart contract -> smart contract communication and to for example simplify test scenarios involving communication between smart contrat wallet and other contracts.
 
 This repo contains the following contracts which enable those aggregations:
 - **BatchCaller**. Aggregation of "reads".
 - **BatchSender**. Aggregation of "writes".
+- **BatchCreator**. Aggregation of contracts' deployments (factory).
 
 ## Repository structure
 This repository is configured to use the [Buidler](https://buidler.dev/) with Typescript, [https://github.com/ethereum-ts/TypeChain](https://github.com/ethereum-ts/TypeChain) for typescript typed bindings on top of the smart contracts, [Waffle](https://getwaffle.io/) and [ethers.js](https://github.com/ethers-io/ethers.js/).
@@ -27,7 +28,7 @@ To deploy on Kovan or Ropsten, it's necessary first to introduce a correct Ether
 
 
 ## Warning
-The contracts included on this repository are not audited and as they are thought to be general enough, don't include extra protections that in some codebases could be desirable (e.g. non-reentrancy on BatchSender).
+Even if tested, the contracts included on this repository are not audited and as they are thought to be general enough, don't include extra protections that in some codebases could be desirable (e.g. non-reentrancy on BatchSender).
 
 **Feel free to use them, but with responsibility**
 
