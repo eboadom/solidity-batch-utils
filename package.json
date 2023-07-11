@@ -14,7 +14,7 @@
     "ropsten:deploy": "buidler --network ropsten full-deployment"
   },
   "devDependencies": {
-    "@nomiclabs/buidler": "1.2.0",
+    "@nomiclabs/buidler": "1.4.8",
     "@nomiclabs/buidler-ethers": "1.2.0",
     "@nomiclabs/buidler-waffle": "1.2.0",
     "@types/mocha": "5.2.7",
